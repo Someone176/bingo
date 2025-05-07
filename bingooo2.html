@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Bingo Game</title>
+<link rel="stylesheet" href="bingo.css" />
+<style>
+ 
+
+</style>
+</head>
+<body>
+<div id="welcome-section">
+  <h2>Welcome to the Bingo Game!</h2>
+  <p>Try to complete a full row or column by marking numbers correctly. Click the "Draw" button to randomly draw a number, then find it on the grid and click to mark it. If you click a number that isn't the drawn number, you'll get a warning. After 3 wrong attempts, the game ends. Good luck and have fun!</p>
+ 
+ <a><a href="page2.html"></a>
+   <button id="start-game-button" type="button">Start to Play</button>
+
+ </a>
+ 
+</div>
+
+<div id="container">
+  <h1>Bingo Game</h1>
+  <div id="drawn-number-container">
+    <div id="drawn-number-label">Drawn Number:</div>
+    <div id="drawn-number">---</div>
+  </div>
+  <button id="draw-button" type="button">Draw</button>
+  <div id="message"></div>
+  <table id="bingo-table" aria-label="Bingo Number Grid"></table>
+</div>
+
+<script src="bingo.js"></script>
+<script>
+  
+  document.getElementById('start-game-button').addEventListener('click', () => {
+    document.getElementById('container').scrollIntoView({behavior: 'smooth'});
+  });
+</script>
+</body>
+</html>
+
+<script>
+  
+  document.getElementById('start-game-button').addEventListener('click', () => {
+    document.getElementById('welcome-section').style.display = 'none';
+    document.getElementById('container').style.display = 'block';
+    document.getElementById('container').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  
+  document.getElementById('container').style.display = 'none';
+</script>
+<style>
+  #welcome-section {
+    text-align: center;
+    padding: 50px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    max-width: 600px;
+  }
+
+  #welcome-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  #welcome-section p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  #start-game-button {
+    background: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  #start-game-button:hover {
+    background: #e55b50;
+  }
+</style>
+<script>
+  function checkGameEnd() {
+    const rows = document.querySelectorAll('#bingo-table tr');
+    let isGameOver = false;
+
+    // Check rows for completion
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      if ([...cells].every(cell => cell.classList.contains('marked'))) {
+        isGameOver = true;
+      }
+    });
+
+    // Check columns for completion
+    for (let col = 0; col < rows[0].children.length; col++) {
+      let columnComplete = true;
+      rows.forEach(row => {
+        if (!row.children[col].classList.contains('marked')) {
+          columnComplete = false;
+        }
+      });
+      if (columnComplete) {
+        isGameOver = true;
+      }
+    }
+
+    if (isGameOver) {
+      document.getElementById('message').textContent = 'Congratulations! You completed the Bingo!';
+      document.getElementById('draw-button').disabled = true;
+    }
+  }
+
+  document.getElementById('bingo-table').addEventListener('click', (event) => {
+    if (event.target.tagName === 'TD') {
+      event.target.classList.add('marked');
+      checkGameEnd();
+    }
+  });
+</script>
+<style>
+  .marked {
+    background-color: #4caf50;
+    color: white;
+  }
+</style>
+

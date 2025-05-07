@@ -1,0 +1,129 @@
+/* Reset and base */
+* {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px 10px 30px;
+  }
+  h1 {
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+  #container {
+    max-width: 370px;
+    width: 100%;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #drawn-number-container {
+    margin: 15px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: #3b3b6b;
+    padding: 12px 20px;
+    border-radius: 10px;
+    min-width: 150px;
+    user-select: none;
+  }
+  #drawn-number-label {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    color: #b0b0d8;
+  }
+  #draw-button {
+    background-color: #ff6f91;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  #draw-button:disabled {
+    background-color: #a07a89;
+    cursor: not-allowed;
+  }
+  #draw-button:hover:not(:disabled) {
+    background-color: #ff3366;
+  }
+  #message {
+    min-height: 24px;
+    margin-bottom: 14px;
+    font-weight: 600;
+    color: #ffbaba;
+    text-align: center;
+    letter-spacing: 0.8px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 370px;
+    table-layout: fixed;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+    user-select: none;
+  }
+  th, td {
+    border: 2px solid #56236a;
+    padding: 8px 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  td.marked {
+    background-color: #42d392;
+    color: #072b14;
+    font-weight: 700;
+    cursor: default;
+    position: relative;
+  }
+  td.marked::after {
+    content: "✕";
+    position: absolute;
+    right: 6px;
+    top: 2px;
+    font-size: 1.2rem;
+    color: #072b14;
+    font-weight: 900;
+  }
+  td:not(.marked):hover {
+    background-color: #7c5295aa;
+  }
+  @media (max-width: 400px) {
+    #container {
+      max-width: 95vw;
+    }
+    th, td {
+      font-size: 0.9rem;
+      padding: 6px 0;
+    }
+    #draw-button {
+      font-size: 1rem;
+      padding: 10px 20px;
+      margin-bottom: 12px;
+    }
+  }
+  
